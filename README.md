@@ -1,6 +1,6 @@
-# Cool Stuff
+# Wavy Plane
 
-_A showcase for a cool stuff_
+_A showcase for an interactive wavy Plane with trailing lights and smooth animation_
 
 <!-- ![Preview](/public/preview.gif) -->
 

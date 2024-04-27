@@ -1,6 +1,6 @@
 {
-  "name": "cool",
-  "description": "A showcase for a cool",
+  "name": "wavy-plane",
+  "description": "A showcase for an interactive wavy Plane with trailing lights and smooth animation",
   "author": "Shuaib Abdulrazaq (https://github.com/Zhaqyy)",
   
   "dependencies": {

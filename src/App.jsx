@@ -1,28 +1,22 @@
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Box, OrbitControls } from "@react-three/drei";
-
-const Scene = () => {
-  const boxRef = useRef();
-  useFrame((state, delta) => {
-    boxRef.current.rotation.y += 0.02;
-  });
-
-  return (
-    <>
-      <Box ref={boxRef} args={[1, 1, 1]} rotation={[0.5, 0, 0]}>
-        <meshNormalMaterial />
-      </Box>
-      <ambientLight />
-    </>
-  );
-};
+import React, { useState } from "react";
+import { PerformanceMonitor } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import Wavy from "./wavy";
 
 const App = () => {
+  const [dpr, setDpr] = useState(1.5);
   return (
-    <Canvas camera={{ fov: 70, position: [0, 0, 3] }}>
-      <OrbitControls />
-      <Scene />
+    <Canvas
+      camera={{
+        fov: 45,
+        near: 0.1,
+        far: 100,
+        position: [0, 0, 5],
+      }}
+      dpr={dpr}
+    >
+      <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}></PerformanceMonitor>
+      <Wavy />
     </Canvas>
   );
 };

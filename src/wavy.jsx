@@ -36,11 +36,11 @@ function Responsive() {
   } else {
     return (
       <>
-      {/* <CameraRig> */}
+      <CameraRig>
         <WaveModel />
-        {/* </CameraRig> */}
+        </CameraRig>
         <Ring />
-        {/* <Light /> */}
+        <Light />
         {/* <EffectComposer disableNormalPass>
           <Bloom mipmapBlur luminanceThreshold={0.2} radius={0.5} />
         </EffectComposer> */}
@@ -49,32 +49,32 @@ function Responsive() {
   }
 }
 
-// function Light() {
-//   const { viewport } = useThree();
-//   const Lref = useRef();
-//   const prevPosition = useRef({ x: 0, y: 0 });
+function Light() {
+  const { viewport } = useThree();
+  const Lref = useRef();
+  const prevPosition = useRef({ x: 0, y: 0 });
 
-//   useFrame(({ mouse }) => {
-//     const x = (mouse.x * viewport.width) / 2;
-//     const y = (mouse.y * viewport.height) / 2;
+  useFrame(({ mouse }) => {
+    const x = (mouse.x * viewport.width) / 2;
+    const y = (mouse.y * viewport.height) / 2;
 
-//     // Damping factor (adjust to control the damping effect)
-//     const dampingFactor = 0.25;
+    // Damping factor (adjust to control the damping effect)
+    const dampingFactor = 0.25;
 
-//     // Calculate the new position by damping the change
-//     const newX =
-//       prevPosition.current.x + (x - prevPosition.current.x) * dampingFactor;
-//     const newY =
-//       prevPosition.current.y + (y - prevPosition.current.y) * dampingFactor;
+    // Calculate the new position by damping the change
+    const newX =
+      prevPosition.current.x + (x - prevPosition.current.x) * dampingFactor;
+    const newY =
+      prevPosition.current.y + (y - prevPosition.current.y) * dampingFactor;
 
-//     Lref.current.position.set(newX, newY, 0);
-//     prevPosition.current = { x: newX, y: newY };
-//   });
+    Lref.current.position.set(newX, newY, 0);
+    prevPosition.current = { x: newX, y: newY };
+  });
 
-//   return (
-//     <pointLight ref={Lref} color={"#8900FF"} intensity={0.07} decay={10} />
-//   );
-// }
+  return (
+    <pointLight ref={Lref} color={"#8900FF"} intensity={0.07} decay={10} />
+  );
+}
 
 const Ring = () => {
   const RingRef = useRef();
@@ -107,15 +107,15 @@ const Ring = () => {
   );
 };
 
-// function CameraRig({ children }) {
-//   const group = useRef();
-//   useFrame((state, delta) => {
-//     easing.dampE(
-//       group.current.rotation,
-//       [state.pointer.y / 20, -state.pointer.x / 20, 0],
-//       0.25,
-//       delta
-//     );
-//   });
-//   return <group ref={group}>{children}</group>;
-// }
+function CameraRig({ children }) {
+  const group = useRef();
+  useFrame((state, delta) => {
+    easing.dampE(
+      group.current.rotation,
+      [state.pointer.y / 20, -state.pointer.x / 20, 0],
+      0.25,
+      delta
+    );
+  });
+  return <group ref={group}>{children}</group>;
+}
